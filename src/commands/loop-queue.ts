@@ -37,6 +37,6 @@ export default class implements Command {
 
     player.loopCurrentQueue = !player.loopCurrentQueue;
 
-    await interaction.reply((player.loopCurrentQueue ? 'looped queue :)' : 'stopped looping queue :('));
+    await interaction.reply((player.loopCurrentQueue ? 'fila em loop :)' : 'loop interrompido :('));
   }
 }

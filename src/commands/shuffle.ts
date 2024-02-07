@@ -28,6 +28,6 @@ export default class implements Command {
 
     player.shuffle();
 
-    await interaction.reply('shuffled');
+    await interaction.reply('embaralhada');
   }
 }

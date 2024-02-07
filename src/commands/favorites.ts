@@ -179,7 +179,7 @@ export default class implements Command {
       },
     });
 
-    await interaction.reply('👍 favorite created');
+    await interaction.reply('👍 favorito adicionado');
   }
 
   private async remove(interaction: ChatInputCommandInteraction) {
@@ -202,6 +202,6 @@ export default class implements Command {
 
     await prisma.favoriteQuery.delete({where: {id: favorite.id}});
 
-    await interaction.reply('👍 favorite removed');
+    await interaction.reply('👍 favorito removido');
   }
 }
