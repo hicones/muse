@@ -61,13 +61,13 @@ export const buildPlayingMessageEmbed = (player: Player): EmbedBuilder => {
   const message = new EmbedBuilder();
   message
     .setColor(player.status === STATUS.PLAYING ? 'DarkGreen' : 'DarkRed')
-    .setTitle(player.status === STATUS.PLAYING ? 'Now Playing' : 'Paused')
+    .setTitle(player.status === STATUS.PLAYING ? 'Tocando' : 'Pausado')
     .setDescription(`
       **${getSongTitle(currentlyPlaying)}**
-      Requested by: <@${requestedBy}>\n
+      Solicitado por: <@${requestedBy}>\n
       ${getPlayerUI(player)}
     `)
-    .setFooter({text: `Source: ${artist}`});
+    .setFooter({text: `Artista: ${artist}`});
 
   if (thumbnailUrl) {
     message.setThumbnail(thumbnailUrl);
@@ -80,14 +80,14 @@ export const buildQueueEmbed = (player: Player, page: number): EmbedBuilder => {
   const currentlyPlaying = player.getCurrent();
 
   if (!currentlyPlaying) {
-    throw new Error('queue is empty');
+    throw new Error('fila vazia');
   }
 
   const queueSize = player.queueSize();
   const maxQueuePage = Math.ceil((queueSize + 1) / PAGE_SIZE);
 
   if (page > maxQueuePage) {
-    throw new Error('the queue isn\'t that big');
+    throw new Error('a fila não é tão grande');
   }
 
   const queuePageBegin = (page - 1) * PAGE_SIZE;
@@ -110,22 +110,22 @@ export const buildQueueEmbed = (player: Player, page: number): EmbedBuilder => {
   const message = new EmbedBuilder();
 
   let description = `**${getSongTitle(currentlyPlaying)}**\n`;
-  description += `Requested by: <@${requestedBy}>\n\n`;
+  description += `Solicitado por: <@${requestedBy}>\n\n`;
   description += `${getPlayerUI(player)}\n\n`;
 
   if (player.getQueue().length > 0) {
-    description += '**Up next:**\n';
+    description += '**A seguir:**\n';
     description += queuedSongs;
   }
 
   message
-    .setTitle(player.status === STATUS.PLAYING ? `Now Playing ${player.loopCurrentSong ? '(loop on)' : ''}` : 'Queued songs')
+    .setTitle(player.status === STATUS.PLAYING ? `Tocando ${player.loopCurrentSong ? '(em loop)' : ''}` : 'Músicas na fila')
     .setColor(player.status === STATUS.PLAYING ? 'DarkGreen' : 'NotQuiteBlack')
     .setDescription(description)
-    .addFields([{name: 'In queue', value: getQueueInfo(player), inline: true}, {
-      name: 'Total length', value: `${totalLength > 0 ? prettyTime(totalLength) : '-'}`, inline: true,
-    }, {name: 'Page', value: `${page} out of ${maxQueuePage}`, inline: true}])
-    .setFooter({text: `Source: ${artist} ${playlistTitle}`});
+    .addFields([{name: 'Na fila', value: getQueueInfo(player), inline: true}, {
+      name: 'Total', value: `${totalLength > 0 ? prettyTime(totalLength) : '-'}`, inline: true,
+    }, {name: 'Página', value: `${page} de ${maxQueuePage}`, inline: true}])
+    .setFooter({text: `Artista: ${artist} ${playlistTitle}`});
 
   if (thumbnailUrl) {
     message.setThumbnail(thumbnailUrl);

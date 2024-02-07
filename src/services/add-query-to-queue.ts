@@ -162,7 +162,7 @@ export default class AddQueryToQueue {
     }
 
     if (newSongs.length === 1) {
-      await interaction.editReply(`Jaé, **${firstSong.title}** foi adicionado ao${addToFrontOfQueue ? ' na frente de' : ''} queue${extraMsg}`);
+      await interaction.editReply(`Jaé, **${firstSong.title}** foi adicionado ao${addToFrontOfQueue ? ' na frente de' : ''} fila${extraMsg}`);
     } else {
       await interaction.editReply(`Jaé, **${firstSong.title}** e ${newSongs.length - 1} outras músicas foram adicionadas à fila${extraMsg}`);
     }

@@ -27,6 +27,55 @@ export default class implements Command {
 
     await interaction.reply({
       embeds: [buildPlayingMessageEmbed(player)],
+      components: [
+        {
+          type: 1,
+          components: [
+            {
+              style: 1,
+              label: '⏮️',
+              custom_id: 'back-button',
+              disabled: false,
+              type: 2,
+            },
+            {
+              style: 1,
+              label: '⏯️',
+              custom_id: 'play-pause-button',
+              disabled: false,
+              type: 2,
+            },
+            {
+              style: 1,
+              label: '⏭️',
+              custom_id: 'skip-button',
+              disabled: false,
+              type: 2,
+            },
+            {
+              style: 1,
+              label: '🔀',
+              custom_id: 'shuffle-button',
+              disabled: false,
+              type: 2,
+            },
+            {
+              style: 1,
+              label: '⏹️',
+              custom_id: 'stop-button',
+              disabled: false,
+              type: 2,
+            },
+            {
+              style: 1,
+              label: '🚮',
+              custom_id: 'clean-button',
+              disabled: false,
+              type: 2,
+            },
+          ],
+        },
+      ],
     });
   }
 }
